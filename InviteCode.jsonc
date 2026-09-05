@@ -1,0 +1,29 @@
+{
+  "name": "InviteCode",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Invite token \u2014 role-prefixed (S/A/SHOP/MNG/CA-WS...-STAMP) or legacy 6-digit code"
+    },
+    "email": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "workspace_id": {
+      "type": "string",
+      "description": "The isolated workspace (WS-...) this invite grants membership to"
+    },
+    "used": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "code",
+    "email",
+    "role"
+  ]
+}
