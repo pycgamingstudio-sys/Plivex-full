@@ -94,4 +94,4 @@
   input, textarea, select { outline: none; }
 }
 
-@layer utilities {
+@layer utilities {}
