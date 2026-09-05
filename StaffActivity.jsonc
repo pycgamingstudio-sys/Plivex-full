@@ -1,0 +1,54 @@
+{
+  "name": "StaffActivity",
+  "type": "object",
+  "properties": {
+    "workspace_id": {
+      "type": "string",
+      "description": "Workspace (WS-...) this staff member belongs to"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the staff member"
+    },
+    "email": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "current_page": {
+      "type": "string",
+      "description": "UI route/page the member is actively viewing"
+    },
+    "last_ping_at": {
+      "type": "string",
+      "description": "Last presence heartbeat timestamp"
+    },
+    "today_date": {
+      "type": "string",
+      "description": "Business day the daily counters belong to"
+    },
+    "today_invoices": {
+      "type": "number",
+      "default": 0
+    },
+    "today_quotations": {
+      "type": "number",
+      "default": 0
+    },
+    "today_revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Recent action stream entries { label, at }"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
