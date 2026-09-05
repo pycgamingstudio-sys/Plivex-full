@@ -4,18 +4,17 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import PageNotFound from './PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
-import UserNotRegisteredError from '@/components/UserNotRegisteredError';
+import UserNotRegisteredError from './UserNotRegisteredError';
 import ScrollToTop from './ScrollToTop';
-import ProtectedRoute from '@/components/ProtectedRoute';
-import RoleGuard from '@/components/RoleGuard';
+import ProtectedRoute from './ProtectedRoute';
+import RoleGuard from './RoleGuard';
 import { PaywallProvider } from '@/lib/paywall';
 import Login from './Login';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
-// Page imports
 import Home from './Home';
-import AppLayout from './components/AppLayout';
+import AppLayout from './AppLayout';
 import InvoiceHistory from './InvoiceHistory';
 import BusinessProfile from './BusinessProfile';
 import ClientDatabase from './ClientDatabase';
@@ -112,4 +111,5 @@ export default function App() {
       </Router>
     </QueryClientProvider>
   );
-        }
+}
+
