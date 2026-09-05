@@ -92,6 +92,8 @@ const AuthenticatedApp = () => {
           <Route path="/help-center" element={<HelpCenter />} />
           <Route path="/account-activity" element={<AccountActivity />} />
           <Route path="/service-catalog" element={<ServiceCatalog />} />
-          <Route path="/team-management" element={<TeamManagement />} />
-            </Route>
-          
+                    <Route path="/team-management" element={<TeamManagement />} />
+        </Route>
+      </Routes>
+    </div>
+        
