@@ -9,32 +9,32 @@ import ScrollToTop from './ScrollToTop';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import RoleGuard from '@/components/RoleGuard';
 import { PaywallProvider } from '@/lib/paywall';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
+import Login from './Login';
+import Register from './Register';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 // Page imports
-import Home from './pages/Home';
+import Home from './Home';
 import AppLayout from './components/AppLayout';
-import InvoiceHistory from './pages/InvoiceHistory';
-import BusinessProfile from './pages/BusinessProfile';
-import ClientDatabase from './pages/ClientDatabase';
-import UsageReports from './pages/UsageReports';
-import Settings from './pages/Settings';
-import QuickTemplates from './pages/QuickTemplates';
-import PaymentLogs from './pages/PaymentLogs';
-import TaxSummary from './pages/TaxSummary';
-import HelpCenter from './pages/HelpCenter';
-import AccountActivity from './pages/AccountActivity';
-import ServiceCatalog from './pages/ServiceCatalog';
-import TeamManagement from './pages/TeamManagement';
-import HomeGate from './components/HomeGate';
-import GuestDashboard from './pages/GuestDashboard';
-import TrialGate from './components/TrialGate';
-import ContactUs from './pages/ContactUs';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
-import CancellationRefund from './pages/CancellationRefund';
+import InvoiceHistory from './InvoiceHistory';
+import BusinessProfile from './BusinessProfile';
+import ClientDatabase from './ClientDatabase';
+import UsageReports from './UsageReports';
+import Settings from './Settings';
+import QuickTemplates from './QuickTemplates';
+import PaymentLogs from './PaymentLogs';
+import TaxSummary from './TaxSummary';
+import HelpCenter from './HelpCenter';
+import AccountActivity from './AccountActivity';
+import ServiceCatalog from './ServiceCatalog';
+import TeamManagement from './TeamManagement';
+import HomeGate from './HomeGate';
+import GuestDashboard from './GuestDashboard';
+import TrialGate from './TrialGate';
+import ContactUs from './ContactUs';
+import PrivacyPolicy from './PrivacyPolicy';
+import TermsOfService from './TermsOfService';
+import CancellationRefund from './CancellationRefund';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -112,4 +112,4 @@ export default function App() {
       </Router>
     </QueryClientProvider>
   );
-      }
+        }
