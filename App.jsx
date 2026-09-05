@@ -80,20 +80,40 @@ const AuthenticatedApp = () => {
         <Route element={<TrialGate />}>
           <Route element={<RoleGuard />}>
             <Route path="/invoice-builder" element={<Home />} />
-        <Route element={<AppLayout />}>
-          <Route path="/invoice-history" element={<InvoiceHistory />} />
-          <Route path="/business-profile" element={<BusinessProfile />} />
-          <Route path="/client-database" element={<ClientDatabase />} />
-          <Route path="/usage-reports" element={<UsageReports />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/templates" element={<QuickTemplates />} />
-          <Route path="/payment-logs" element={<PaymentLogs />} />
-          <Route path="/tax-summary" element={<TaxSummary />} />
-          <Route path="/help-center" element={<HelpCenter />} />
-          <Route path="/account-activity" element={<AccountActivity />} />
-          <Route path="/service-catalog" element={<ServiceCatalog />} />
-                    <Route path="/team-management" element={<TeamManagement />} />
+            <Route element={<AppLayout />}>
+              <Route path="/invoice-history" element={<InvoiceHistory />} />
+              <Route path="/business-profile" element={<BusinessProfile />} />
+              <Route path="/client-database" element={<ClientDatabase />} />
+              <Route path="/usage-reports" element={<UsageReports />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/templates" element={<QuickTemplates />} />
+              <Route path="/payment-logs" element={<PaymentLogs />} />
+              <Route path="/tax-summary" element={<TaxSummary />} />
+              <Route path="/help-center" element={<HelpCenter />} />
+              <Route path="/account-activity" element={<AccountActivity />} />
+              <Route path="/service-catalog" element={<ServiceCatalog />} />
+              <Route path="/team-management" element={<TeamManagement />} />
+            </Route>
+          </Route>
         </Route>
-      </Routes>
-    </div>
-        
+      </Route>
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
+  );
+};
+
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClientInstance}>
+      <Router>
+        <ScrollToTop />
+        <AuthProvider>
+          <PaywallProvider>
+            <AuthenticatedApp />
+            <Toaster />
+          </PaywallProvider>
+        </AuthProvider>
+      </Router>
+    </QueryClientProvider>
+  );
+    }
