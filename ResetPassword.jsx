@@ -1,12 +1,12 @@
-import { db } from "@/api/base44Client";
+import { db } from "./base44Client";
 import React, { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "./button";
+import { Input } from "./input";
+import { Label } from "./label";
 import { Lock, Loader2, AlertTriangle } from "lucide-react";
-import AuthLayout from "@/components/AuthLayout";
+import AuthLayout from "./AuthLayout";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();
@@ -96,3 +96,21 @@ export default function ResetPassword() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="pl-10 h-12"
               required
+            />
+          </div>
+        </div>
+        <Button type="submit" className="w-full h-12" disabled={loading}>
+          {loading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Resetting...
+            </>
+          ) : (
+            "Set new password"
+          )}
+        </Button>
+      </form>
+    </AuthLayout>
+  );
+}
+
