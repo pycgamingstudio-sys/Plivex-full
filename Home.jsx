@@ -3,13 +3,13 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
 import { Link } from "react-router-dom";
-import { KEYS, pushItem, genId, deductStockForInvoice, loadList, loadState, removeState, tenantKey } from "@/lib/stores";
-import { useAuth } from "@/lib/AuthContext";
-import { RAZORPAY_KEY, loadRazorpay } from "@/lib/razorpay";
-import { usePaywall } from "@/lib/paywall";
-import { trackStaffAction } from "@/lib/staffTracking";
-import PresenceBeacon from "@/components/PresenceBeacon";
-import HSNAutocomplete from "@/components/HSNAutocomplete";
+import { KEYS, pushItem, genId, deductStockForInvoice, loadList, loadState, removeState, tenantKey } from "./stores";
+import { useAuth } from "./AuthContext";
+import { RAZORPAY_KEY, loadRazorpay } from "./razorpay";
+import { usePaywall } from "./paywall";
+import { trackStaffAction } from "./staffTracking";
+import PresenceBeacon from "./PresenceBeacon";
+import HSNAutocomplete from "./HSNAutocomplete";
 import {
   AlertCircle,
   BadgeCheck,
@@ -95,3 +95,63 @@ function Field({ label, children, hint, error }) {
 function SectionCard({ icon: Icon, title, eyebrow, children, action }) {
   return (
     <section className="rounded-xl border bg-card p-4 transition-colors sm:p-5">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          {Icon && (
+            <div className="rounded-lg bg-primary/10 p-2 text-primary">
+              <Icon className="h-5 w-5" />
+            </div>
+          )}
+          <div>
+            {eyebrow && (
+              <p className="text-xs font-medium text-muted-foreground">
+                {eyebrow}
+              </p>
+            )}
+            <h3 className="text-base font-semibold text-foreground">{title}</h3>
+          </div>
+        </div>
+        {action && <div>{action}</div>}
+      </div>
+      {children && <div className="mt-4">{children}</div>}
+    </section>
+  );
+}
+
+export default function Home() {
+  const [invoice, setInvoice] = useState(initialInvoice);
+
+  return (
+    <div className="container mx-auto max-w-5xl p-4 sm:p-6 space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Invoice Builder</h1>
+        <Link to="/invoice-history" className="text-sm text-primary hover:underline">
+          Invoice History
+        </Link>
+      </div>
+
+      <SectionCard icon={FileText} title="Invoice Details" eyebrow="General">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="Invoice Number">
+            <input
+              type="text"
+              className={inputClass}
+              placeholder="INV-001"
+              value={invoice.number}
+              onChange={(e) => setInvoice({ ...invoice, number: e.target.value })}
+            />
+          </Field>
+          <Field label="Issue Date">
+            <input
+              type="date"
+              className={inputClass}
+              value={invoice.issueDate}
+              onChange={(e) => setInvoice({ ...invoice, issueDate: e.target.value })}
+            />
+          </Field>
+        </div>
+      </SectionCard>
+    </div>
+  );
+      }
+p-5">
