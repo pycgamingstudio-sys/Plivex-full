@@ -94,4 +94,4 @@ const AuthenticatedApp = () => {
           <Route path="/service-catalog" element={<ServiceCatalog />} />
           <Route path="/team-management" element={<TeamManagement />} />
             </Route>
-          </Route>
+          
