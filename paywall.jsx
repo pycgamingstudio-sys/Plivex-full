@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useCallback } from "react";
 import { X, Check, Sparkles, Lock, Crown, Star, XCircle } from "lucide-react";
-import { useAuth } from "@/lib/AuthContext";
-import { openRazorpayCheckout } from "@/lib/razorpay";
+import { useAuth } from "./AuthContext";
+import { openRazorpayCheckout } from "./razorpay";
 
 export const LIMIT = 10;
 const COUNT_KEY = "invoicepulse:actionCount";
@@ -43,8 +43,7 @@ export function PaywallProvider({ children }) {
       return now;
     } catch { return Date.now(); }
   });
-  // Continuous background trial clock — the server-persisted trial_start_at on the
-  // user profile always wins, so the countdown runs whether or not the user logs in.
+
   const trialStart = user?.trial_start_at ? new Date(user.trial_start_at).getTime() : localTrialStart;
   const [showPaywall, setShowPaywall] = useState(false);
   const [blocked, setBlocked] = useState(false);
