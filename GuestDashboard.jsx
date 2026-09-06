@@ -111,4 +111,4 @@ export default function GuestDashboard() {
       {authAction !== null && <AuthModal isOpen={true} onClose={() => setAuthAction(null)} actionName={authAction} />}
     </div>
   );
-                                                                 }
+      }
