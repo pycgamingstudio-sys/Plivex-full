@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { appParams } from './app-params';
 import { clearSessionCache } from './sessionCache';
 import { setTenantId } from './stores';
-import createAxiosClient from './createAxiosClient'; // Ensure correct path for axios client
+import { createAxiosClient } from './axiosClient';
 
 const AuthContext = createContext();
 
