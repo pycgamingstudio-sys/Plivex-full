@@ -90,8 +90,25 @@ export default function GuestDashboard() {
             <div className="mt-3 h-[180px]">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={TREND}>
-                  <defs><linearGradient id="demoSales" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#6D28D9" stopOpacity={0.35} /><stop offset="100%" stopColor="#6D28D9" stopOpacity={0.02} /></linearGradient></defs>
+                  <defs>
+                    <linearGradient id="demoSales" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#6D28D9" stopOpacity={0.35} />
+                      <stop offset="100%" stopColor="#6D28D9" stopOpacity={0.02} />
+                    </linearGradient>
+                  </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
                   <XAxis dataKey="day" tick={{ fontSize: 10, fill: "#94A3B8" }} axisLine={false} tickLine={false} />
                   <YAxis tick={{ fontSize: 10, fill: "#94A3B8" }} axisLine={false} tickLine={false} width={44} />
                   <Tooltip formatter={(v) => [`₹${Number(v).toLocaleString("en-IN")}`, "Sales"]} contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #E5E7EB" }} />
+                  <Area type="monotone" dataKey="sales" stroke="#6D28D9" strokeWidth={2} fillOpacity={1} fill="url(#demoSales)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {authAction !== null && <AuthModal isOpen={true} onClose={() => setAuthAction(null)} actionName={authAction} />}
+    </div>
+  );
+                                                                 }
