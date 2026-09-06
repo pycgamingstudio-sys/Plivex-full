@@ -151,7 +151,8 @@ export default function Home() {
           </Field>
         </div>
       </SectionCard>
-    </div>
-  );
-      }
-p-5">
+          </div>
+    </SectionCard>
+  </div>
+);
+}
