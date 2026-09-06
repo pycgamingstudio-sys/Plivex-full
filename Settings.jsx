@@ -1,11 +1,11 @@
-import { db } from "@/api/base44Client";
+import { db } from "./base44Client";
 import { useEffect, useState } from "react";
 import { Settings as SettingsIcon, Check, Bell, Send, Loader2, Eye, EyeOff, ShieldCheck } from "lucide-react";
 
-import PageShell from "@/components/PageShell";
-import { KEYS, useLocalState } from "@/lib/stores";
-import { inputCls } from "@/lib/ui";
-import DataImportExport from "@/components/DataImportExport";
+import PageShell from "./PageShell";
+import { KEYS, useLocalState } from "./stores";
+import { inputCls } from "./ui";
+import DataImportExport from "./DataImportExport";
 
 const EMAIL_KEY = "invoicepulse:emailSettings";
 
@@ -18,9 +18,31 @@ export default function Settings() {
   return (
     <PageShell icon={SettingsIcon} title="Settings" subtitle="Defaults applied across your workspace.">
       <div className="space-y-4 rounded-xl border bg-card p-5">
-        <label className="block text-[12px] font-semibold text-muted-foreground">Default currency<select className={inputCls} value={settings.currency} onChange={(e) => set("currency", e.target.value)}><option value="INR">INR · ₹</option><option value="USD">USD · $</option><option value="EUR">EUR · €</option></select></label>
-        <label className="block text-[12px] font-semibold text-muted-foreground">Default GST rate<select className={inputCls} value={settings.taxRate} onChange={(e) => set("taxRate", Number(e.target.value))}><option value="0">0%</option><option value="5">5%</option><option value="12">12%</option><option value="18">18%</option><option value="28">28%</option></select></label>
-        <div className="flex items-center justify-between rounded-lg border p-3"><div><p className="text-[13px] font-semibold">Dark theme</p><p className="text-[11px] text-muted-foreground">Toggle the workspace appearance.</p></div><button onClick={() => setDark(!dark)} className={`relative h-6 w-11 rounded-full transition-colors ${dark ? "bg-primary" : "bg-muted"}`}><span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${dark ? "left-[22px]" : "left-0.5"}`} /></button></div>
+        <label className="block text-[12px] font-semibold text-muted-foreground">Default currency
+          <select className={inputCls} value={settings.currency} onChange={(e) => set("currency", e.target.value)}>
+            <option value="INR">INR · ₹</option>
+            <option value="USD">USD · $</option>
+            <option value="EUR">EUR · €</option>
+          </select>
+        </label>
+        <label className="block text-[12px] font-semibold text-muted-foreground">Default GST rate
+          <select className={inputCls} value={settings.taxRate} onChange={(e) => set("taxRate", Number(e.target.value))}>
+            <option value="0">0%</option>
+            <option value="5">5%</option>
+            <option value="12">12%</option>
+            <option value="18">18%</option>
+            <option value="28">28%</option>
+          </select>
+        </label>
+        <div className="flex items-center justify-between rounded-lg border p-3">
+          <div>
+            <p className="text-[13px] font-semibold">Dark theme</p>
+            <p className="text-[11px] text-muted-foreground">Toggle the workspace appearance.</p>
+          </div>
+          <button onClick={() => setDark(!dark)} className={`relative h-6 w-11 rounded-full transition-colors ${dark ? "bg-primary" : "bg-muted"}`}>
+            <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${dark ? "left-[22px]" : "left-0.5"}`} />
+          </button>
+        </div>
         <p className="flex items-center gap-1.5 text-[11px] text-emerald-600"><Check className="h-3.5 w-3.5" />Saved automatically</p>
       </div>
       <div className="mt-4"><DataImportExport /></div>
@@ -96,3 +118,16 @@ function EmailSettingsCard() {
         <div className="mt-2 flex flex-col gap-2 sm:flex-row">
           <input type="email" value={testEmail} onChange={(e) => setTestEmail(e.target.value)} placeholder="recipient@example.com" className={inputCls} />
           <button onClick={sendTest} disabled={testing} className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#6D28D9] px-4 py-2.5 text-[12px] font-bold text-white hover:bg-[#7C3AED] disabled:opacity-70 sm:self-start">
+            {testing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+            {testing ? "Sending..." : "Send Test"}
+          </button>
+        </div>
+        {msg && (
+          <p className={`mt-2 text-[11px] ${msg.kind === "ok" ? "text-emerald-600" : "text-destructive"}`}>
+            {msg.text}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+          }
