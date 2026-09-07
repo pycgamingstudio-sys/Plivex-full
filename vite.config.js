@@ -6,16 +6,16 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const rootPathResolver = () => ({
-  name: "root-path-resolver",
+const aggressiveRootResolver = () => ({
+  name: "aggressive-root-resolver",
   enforce: "pre",
   resolveId(source) {
-    // अगर इंपोर्ट रूट रिलेटिव (./ या ../) नहीं है और पैकेज इंपोर्ट नहीं है
+    // अगर पैकेज या रिलेटिव इंपोर्ट नहीं है
     if (!source.startsWith(".") && !source.startsWith("/") && !source.startsWith("node_modules")) {
-      const fileName = source.split("/").pop();
-      const possibleExtensions = ["", ".jsx", ".js", ".ts", ".tsx", ".json"];
+      const fileName = source.split("/").pop(); // रास्ते से सिर्फ असली फ़ाइल का नाम निकालता है
+      const extensions = ["", ".jsx", ".js", ".tsx", ".ts", ".json"];
 
-      for (const ext of possibleExtensions) {
+      for (const ext of extensions) {
         const fullPath = path.resolve(__dirname, `./${fileName}${ext}`);
         if (fs.existsSync(fullPath)) {
           return fullPath;
@@ -27,17 +27,7 @@ const rootPathResolver = () => ({
 });
 
 export default defineConfig({
-  plugins: [rootPathResolver(), react()],
-  resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
-    alias: {
-      "@": path.resolve(__dirname, "./"),
-      "src": path.resolve(__dirname, "./"),
-      "lib": path.resolve(__dirname, "./"),
-      "components": path.resolve(__dirname, "./"),
-      "ui": path.resolve(__dirname, "./"),
-    },
-  },
+  plugins: [aggressiveRootResolver(), react()],
   build: {
     outDir: "dist",
   },
