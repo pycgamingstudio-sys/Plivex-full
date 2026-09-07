@@ -1,30 +1,33 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// किसी भी नेस्टेड पाथ को काटकर सीधे फ़ाइल नेम निकालकर रूट से जोड़ने के लिए प्लगइन
-const catchAllToRootPlugin = () => ({
-  name: "catch-all-to-root",
+const rootPathResolver = () => ({
+  name: "root-path-resolver",
+  enforce: "pre",
   resolveId(source) {
-    if (
-      source.startsWith("@/") ||
-      source.startsWith("src/") ||
-      source.startsWith("lib/") ||
-      source.startsWith("components/") ||
-      source.startsWith("ui/")
-    ) {
+    // अगर इंपोर्ट रूट रिलेटिव (./ या ../) नहीं है और पैकेज इंपोर्ट नहीं है
+    if (!source.startsWith(".") && !source.startsWith("/") && !source.startsWith("node_modules")) {
       const fileName = source.split("/").pop();
-      return path.resolve(__dirname, `./${fileName}`);
+      const possibleExtensions = ["", ".jsx", ".js", ".ts", ".tsx", ".json"];
+
+      for (const ext of possibleExtensions) {
+        const fullPath = path.resolve(__dirname, `./${fileName}${ext}`);
+        if (fs.existsSync(fullPath)) {
+          return fullPath;
+        }
+      }
     }
     return null;
   },
 });
 
 export default defineConfig({
-  plugins: [catchAllToRootPlugin(), react()],
+  plugins: [rootPathResolver(), react()],
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
