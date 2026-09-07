@@ -12,9 +12,13 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./"),
       "src": path.resolve(__dirname, "./"),
+      "lib": path.resolve(__dirname, "./"),
+      "components": path.resolve(__dirname, "./"),
+      "ui": path.resolve(__dirname, "./"),
     },
   },
   build: {
     outDir: "dist",
   },
 });
+
