@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   Receipt,
   Users,
@@ -143,7 +142,9 @@ export default function AboutSection() {
                 key={s.label}
                 className="rounded-2xl bg-white/10 px-4 py-3 text-center"
               >
-                <p className="text-[22px] font-bold leading-none">{s.value}</p>
+                <p className="text-[22px] font-bold leading-none">
+                  {s.value}
+                </p>
                 <p className="mt-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
                   {s.label}
                 </p>
@@ -203,8 +204,4 @@ export default function AboutSection() {
       </div>
     </section>
   );
-}
-
-एक और चीज़: तुम्हारे original code में "Link", "Zap" import किए गए हैं लेकिन इस्तेमाल नहीं हो रहे। मैंने उन्हें हटा दिया है। यह build error का कारण नहीं था, बस unnecessary imports थे।
-
-अब "npm run build" चलाओ। अगर अगला error आता है, पूरा error log भेज देना—एक-एक करके build को clean कर देंगे।
+      }
