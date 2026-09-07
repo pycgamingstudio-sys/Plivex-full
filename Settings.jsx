@@ -97,8 +97,10 @@ function EmailSettingsCard() {
 
       <label className="block text-[12px] font-semibold text-muted-foreground">Gmail 16-digit app password
         <div className="relative">
-          <input type={showPass ? "text" : "password"} value={cfg.appPassword} onChange={(e) => update("appPassword", e.target.value)} placeholder="•••• •••• •••• ••••" className={`${inputCls} pr-10`} autoComplete="off" />
-          <button type="button" onClick={() => setShowPass((s) => !s)} className="absolute right-2 top-2.5 rounded p-1 text-muted-foreground hover:bg-secondary" aria-label={showPass ? "Hide password" : "Show password"}>{showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}</button>
+          <input type={showPass ? "text" : "password"} value={cfg.appPassword} onChange={(e) => update("appPassword", e.target.value)} placeholder="•••• •••• •••• ••••" className={inputCls} />
+          <button type="button" onClick={() => setShowPass((s) => !s)} className="absolute right-2 top-2.5 rounded p-1 text-muted-foreground hover:bg-secondary" aria-label={showPass ? "Hide password" : "Show password"}>
+            {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          </button>
         </div>
         <span className="mt-1 block text-[10px] text-muted-foreground">Generate this in Google Account → Security → App passwords. Stored locally; falls back to workspace Gmail secrets if left empty.</span>
       </label>
@@ -117,7 +119,7 @@ function EmailSettingsCard() {
         <p className="mt-0.5 text-[11px] text-muted-foreground">Verify your SMTP connection by sending a test reminder email.</p>
         <div className="mt-2 flex flex-col gap-2 sm:flex-row">
           <input type="email" value={testEmail} onChange={(e) => setTestEmail(e.target.value)} placeholder="recipient@example.com" className={inputCls} />
-          <button onClick={sendTest} disabled={testing} className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#6D28D9] px-4 py-2.5 text-[12px] font-bold text-white hover:bg-[#7C3AED] disabled:opacity-70 sm:self-start">
+          <button onClick={sendTest} disabled={testing} className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#6D28D9] px-4 py-2.5 text-[12px] font-bold text-white hover:bg-[#7C3AED] disabled:opacity-50">
             {testing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
             {testing ? "Sending..." : "Send Test"}
           </button>
@@ -130,4 +132,4 @@ function EmailSettingsCard() {
       </div>
     </div>
   );
-          }
+}

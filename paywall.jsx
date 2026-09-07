@@ -25,7 +25,7 @@ const PaywallContext = createContext(null);
 
 export function usePaywall() {
   const ctx = useContext(PaywallContext);
-  if (!ctx) return { isPremium: true, subscription: "pro", planName: "Pro", trialActive: false, trialDaysLeft: 0, used: 0, limit: LIMIT, requestAction: () => true, canAccess: () => true, activatePlan: () => {}, upgrade: () => {}, showPaywall: false, blocked: false, openPaywall: () => {}, closePaywall: () => {} };
+  if (!ctx) return { isPremium: true, subscription: "pro", planName: "Pro", trialActive: false, trialDaysLeft: 0, used: 0, limit: LIMIT, requestAction: () => true, canAccess: () => true, activatePlan: () => {}, openPaywall: () => {}, closePaywall: () => {}, showPaywall: false, blocked: false };
   return ctx;
 }
 
@@ -166,7 +166,7 @@ function PaywallModal({ blocked, used, trialActive, trialDaysLeft, onUpgrade, on
           {!blocked && <button onClick={onClose} className="absolute right-3 top-3 rounded-lg p-2 text-white/80 hover:bg-white/10" aria-label="Close"><X className="h-4 w-4" /></button>}
           <div className="flex items-center gap-2"><Sparkles className="h-4 w-4" /><span className="text-[10px] font-bold uppercase tracking-[0.18em]">Plivex Premium</span></div>
           <h3 className="mt-3 text-[22px] font-bold leading-tight">{blocked ? "Your 14-day full-access trial has completed!" : "Choose your plan"}</h3>
-          <p className="mt-1.5 text-[12px] leading-relaxed text-white/85">{blocked ? "Upgrade to a paid plan to unlock unlimited invoices, data backup and team access." : "Unlock unlimited actions and premium features across the entire workspace."}</p>
+          <p className="mt-1.5 text-[12px] leading-relaxed text-white/85">{blocked ? "Upgrade to a paid plan to unlock unlimited invoices, data backup and team access." : "Unlock unlimited actions and premium features."}</p>
           {trialActive ? (
             <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold">Trial active · {trialDaysLeft} day{trialDaysLeft !== 1 ? "s" : ""} left</div>
           ) : (
@@ -178,7 +178,7 @@ function PaywallModal({ blocked, used, trialActive, trialDaysLeft, onUpgrade, on
           <div className="grid gap-3 sm:grid-cols-2">
             {PLANS.map((plan) => (
               <div key={plan.id} className={`relative flex flex-col rounded-2xl border p-4 ${plan.accent ? "border-[#6D28D9] bg-[#6D28D9]/5" : "border-[#E5E7EB] bg-white"}`}>
-                {plan.badge && <span className={`absolute -top-2.5 right-4 rounded-full px-2.5 py-0.5 font-mono-ui text-[9px] font-bold uppercase tracking-wider text-white ${plan.accent ? "bg-[#6D28D9]" : "bg-slate-500"}`}>{plan.badge}</span>}
+                {plan.badge && <span className={`absolute -top-2.5 right-4 rounded-full px-2.5 py-0.5 font-mono-ui text-[9px] font-bold uppercase tracking-wider text-white ${plan.accent ? "bg-[#6D28D9]" : "bg-slate-400"}`}>{plan.badge}</span>}
                 <div className="flex items-center gap-2">
                   {plan.accent ? <Crown className="h-4 w-4 text-[#6D28D9]" /> : <Star className="h-4 w-4 text-slate-400" />}
                   <p className="text-[13px] font-bold text-slate-900">{plan.name}</p>
@@ -186,13 +186,13 @@ function PaywallModal({ blocked, used, trialActive, trialDaysLeft, onUpgrade, on
                 <p className="mt-2 text-[26px] font-bold leading-none text-slate-900">₹{plan.price}<span className="text-[12px] font-medium text-slate-400">/{plan.period}</span></p>
                 <div className="mt-3 space-y-1.5">
                   {plan.included.map((f) => (
-                    <div key={f} className="flex items-start gap-2 text-[11px] font-medium text-slate-700"><span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"><Check className="h-2.5 w-2.5" /></span>{f}</div>
+                    <div key={f} className="flex items-start gap-2 text-[11px] font-medium text-slate-700"><span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-100"><Check className="h-2.5 w-2.5 text-emerald-600" /></span>{f}</div>
                   ))}
                   {plan.locked.map((f) => (
-                    <div key={f} className="flex items-start gap-2 text-[11px] font-medium text-slate-400"><span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-600"><XCircle className="h-2.5 w-2.5" /></span>{f} (Locked)</div>
+                    <div key={f} className="flex items-start gap-2 text-[11px] font-medium text-slate-400"><span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-slate-100"><XCircle className="h-2.5 w-2.5 text-slate-300" /></span>{f}</div>
                   ))}
                 </div>
-                <button onClick={() => checkout(plan)} disabled={processing === plan.id} className={`mt-4 w-full rounded-xl py-2.5 text-[12px] font-bold transition-transform hover:-translate-y-0.5 disabled:opacity-60 ${plan.accent ? "bg-[#6D28D9] text-white" : "border border-[#6D28D9] text-[#6D28D9] hover:bg-[#6D28D9]/5"}`}>
+                <button onClick={() => checkout(plan)} disabled={processing === plan.id} className={`mt-4 w-full rounded-xl py-2.5 text-[12px] font-bold transition-transform hover:-translate-y-0.5 disabled:opacity-50 ${plan.accent ? "bg-[#6D28D9] text-white hover:bg-[#7C3AED]" : "border bg-white text-slate-900 hover:bg-slate-50"}`}>
                   {processing === plan.id ? "Opening checkout…" : `Buy — ₹${plan.price}/${plan.period}`}
                 </button>
               </div>

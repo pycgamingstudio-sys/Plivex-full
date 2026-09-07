@@ -149,8 +149,8 @@ export default function Home() {
               onChange={(e) => setInvoice({ ...invoice, issueDate: e.target.value })}
             />
           </Field>
-              </div>
-    </SectionCard>
-  </div>
-);
+        </div>
+      </SectionCard>
+    </div>
+  );
 }

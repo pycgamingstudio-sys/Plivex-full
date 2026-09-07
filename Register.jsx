@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-import { Button } from "./button";
-import { Input } from "./input";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./card";
-import { Alert, AlertDescription } from "./alert";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function Register() {
   const [email, setEmail] = useState('');
