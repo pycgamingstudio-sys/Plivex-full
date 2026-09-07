@@ -96,7 +96,10 @@ export default function DashboardTab({ onNavigate, onCreateInvoice, role, teamUn
           <a href="mailto:plivex.helps@gmail.com" className="flex items-center gap-2 rounded-xl border border-[#E5E7EB] p-3 hover:bg-slate-50"><Mail className="h-4 w-4 text-[#6D28D9]" /><div><p className="text-[12px] font-semibold text-slate-700">plivex.helps@gmail.com</p><p className="text-[11px] text-slate-400">Email support</p></div></a>
           <Link to="/help-center" className="flex items-center gap-2 rounded-xl border border-[#E5E7EB] p-3 hover:bg-slate-50"><HelpCircle className="h-4 w-4 text-amber-500" /><div><p className="text-[12px] font-semibold text-slate-700">FAQs & Guides</p><p className="text-[11px] text-slate-400">Browse the help center
           </p>
-          </div>
+                    </div>
           </Link>
-          </div>
-</div>
+        </div>
+      </div>
+    </div>
+  );
+}
