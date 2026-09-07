@@ -1,4 +1,4 @@
-import LegalLayout, { LegalItem } from "@/components/LegalLayout";
+import LegalLayout from "./LegalLayout";
 
 export default function CancellationRefund() {
   return (
