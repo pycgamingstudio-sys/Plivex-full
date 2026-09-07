@@ -16,14 +16,14 @@ export default function HelpCenter() {
       <div className="grid gap-3 sm:grid-cols-2">
         {guides.map((g, i) => (
           <div key={g.title} className="rounded-xl border bg-card p-4">
-            <div className="flex items-center gap-2"><span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">{i + 1}</span><p className="text-[13px] font-bold">{g.title}</p></div>
+            <div className="flex items-center gap-2"><span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">{i + 1}</span><h3 className="text-[12px] font-bold">{g.title}</h3></div>
             <p className="mt-2 text-[12px] leading-relaxed text-muted-foreground">{g.body}</p>
           </div>
         ))}
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
-        <a href="tel:9758455218" className="flex items-center gap-3 rounded-xl border bg-card p-4 hover:bg-secondary"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"><Phone className="h-5 w-5" /></span><div><p className="text-[11px] text-muted-foreground">Call support</p><p className="text-[14px] font-bold">9758455218</p></div></a>
-        <a href="mailto:plivex.helps@gmail.com" className="flex items-center gap-3 rounded-xl border bg-card p-4 hover:bg-secondary"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary"><Mail className="h-5 w-5" /></span><div><p className="text-[11px] text-muted-foreground">Email support</p><p className="text-[14px] font-bold">plivex.helps@gmail.com</p></div></a>
+        <a href="tel:9758455218" className="flex items-center gap-3 rounded-xl border bg-card p-4 hover:bg-secondary"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600"><Phone className="h-4 w-4" /></span><div><p className="text-[12px] font-bold">+91 97584 55218</p><p className="text-[10px] text-muted-foreground">Phone support</p></div></a>
+        <a href="mailto:plivex.helps@gmail.com" className="flex items-center gap-3 rounded-xl border bg-card p-4 hover:bg-secondary"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary"><Mail className="h-4 w-4" /></span><div><p className="text-[12px] font-bold">plivex.helps@gmail.com</p><p className="text-[10px] text-muted-foreground">Email support</p></div></a>
       </div>
     </PageShell>
   );

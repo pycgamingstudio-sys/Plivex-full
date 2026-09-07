@@ -8,7 +8,7 @@ const money = (v, c = "INR") => `${sym(c)} ${(Number(v) || 0).toLocaleString("en
 const dateLabel = (v) => (v ? new Date(v).toLocaleDateString("en-IN", { day: "2-digit", month: "short" }) : "—");
 
 function Stat({ label, value, accent }) {
-  return <div className={`rounded-xl border bg-card p-4 ${accent ? "border-primary/40 bg-primary/[.04]" : ""}`}><p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{label}</p><p className="mt-1 text-[22px] font-bold tracking-[-0.03em]">{value}</p></div>;
+  return <div className={`rounded-xl border bg-card p-4 ${accent ? "border-primary/40 bg-primary/[.04]" : ""}`}><p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{label}</p><p className="mt-1.5 text-[20px] font-bold">{value}</p></div>;
 }
 
 export default function UsageReports() {
