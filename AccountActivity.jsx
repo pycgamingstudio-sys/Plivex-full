@@ -11,7 +11,7 @@ export default function AccountActivity() {
   const [items, setItems] = useState(() => loadList(KEYS.activity));
   const clear = () => { if (window.confirm("Clear all activity?")) { saveList(KEYS.activity, []); setItems([]); } };
   return (
-    <PageShell icon={Activity} title="Account activity" subtitle="A timeline of your recent actions in this workspace." action={items.length ? <button onClick={clear} className="rounded-lg border px-3 py-2 text-[12px] font-semibold text-destructive hover:bg-destructive/10">Clear</button> : null}>
+    <PageShell icon={Activity} title="Account activity" subtitle="A timeline of your recent actions in this workspace." action={items.length ? <button onClick={clear} className="rounded-lg border px-3 py-2 text-xs font-semibold text-destructive hover:bg-destructive/10">Clear all</button> : null}>
       {items.length === 0 ? (
         <div className="rounded-xl border border-dashed bg-card p-10 text-center text-[13px] text-muted-foreground">No activity recorded yet. Generate or share an invoice to get started.</div>
       ) : (

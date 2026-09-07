@@ -136,7 +136,7 @@ export default function TeamManagement() {
         </div>
         <div className="flex items-center gap-2">
           <span className="rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-semibold text-slate-600">Your role: {getRoleLabel(role)}</span>
-          <button onClick={() => setAddOpen(true)} className="inline-flex items-center gap-1.5 rounded-xl bg-[#6D28D9] px-3.5 py-2.5 text-[12px] font-bold text-white hover:bg-[#7C3AED]"><UserPlus className="h-4 w-4" />Add New Team Member</button>
+          <button onClick={() => setAddOpen(true)} className="inline-flex items-center gap-1.5 rounded-xl bg-[#6D28D9] px-3.5 py-2.5 text-[12px] font-bold text-white hover:bg-[#7C3AED]"><UserPlus className="h-4 w-4" />Add member</button>
         </div>
       </div>
 
@@ -158,7 +158,7 @@ export default function TeamManagement() {
               <p className="mt-1 break-all font-mono-ui text-[13px] font-bold text-[#6D28D9]">{inviteResult.code || "Sent via email"}</p>
             </div>
             {inviteResult.code && (
-              <button onClick={() => { try { navigator.clipboard.writeText(`${window.location.origin}/register?invite_token=${encodeURIComponent(inviteResult.code)}`); } catch { /* best effort */ } }} className="shrink-0 rounded-xl bg-[#6D28D9] px-3.5 py-2 text-[11px] font-bold text-white hover:bg-[#7C3AED]">Copy invite link</button>
+              <button onClick={() => { try { navigator.clipboard.writeText(`${window.location.origin}/register?invite_token=${encodeURIComponent(inviteResult.code)}`); } catch { /* best effort */ } }} className="rounded-lg border border-[#6D28D9] px-3 py-2 text-[11px] font-bold text-[#6D28D9] hover:bg-[#6D28D9]/10">Copy link</button>
             )}
           </div>
         </div>
@@ -231,13 +231,13 @@ function MemberModal({ mode, member, onClose, onSubmit, busy }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm" onClick={onClose}>
       <form onSubmit={submit} className="w-full max-w-[460px] rounded-2xl border border-[#E5E7EB] bg-white p-5 shadow-xl" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between"><h3 className="text-[16px] font-bold text-slate-900">{isAdd ? "Add new team member" : "Edit role"}</h3><button type="button" onClick={onClose} className="rounded-lg p-2 text-slate-400 hover:bg-slate-100"><X className="h-4 w-4" /></button></div>
+        <div className="flex items-center justify-between"><h3 className="text-[16px] font-bold text-slate-900">{isAdd ? "Add new team member" : "Edit role"}</h3><button type="button" onClick={onClose} className="rounded-lg p-2 text-slate-400 hover:bg-slate-50"><X className="h-4 w-4" /></button></div>
         {isAdd ? (
           <div className="mt-4 space-y-3">
-            <label className="block text-[12px] font-semibold text-slate-500">Member email address (required)<input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="teammate@company.com" className={inputCls} /></label>
+            <label className="block text-[12px] font-semibold text-slate-500">Member email address (required)<input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} placeholder="teammate@company.com" /></label>
             <label className="block text-[12px] font-semibold text-slate-500">Member name<input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Rahul" className={inputCls} /></label>
             <label className="block text-[12px] font-semibold text-slate-500">Select role<select value={role} onChange={(e) => setRole(e.target.value)} className={inputCls}>{ROLE_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}</select></label>
-            <p className="flex items-start gap-2 rounded-lg bg-slate-50 px-3 py-2 text-[11px] text-slate-500"><Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#6D28D9]" />An invite email will be sent so they can join this workspace with the assigned role.</p>
+            <p className="flex items-start gap-2 rounded-lg bg-slate-50 px-3 py-2 text-[11px] text-slate-500"><Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#6D28D9]" />An invite email will be sent to this address.</p>
           </div>
         ) : (
           <div className="mt-4 space-y-3">
@@ -247,7 +247,7 @@ function MemberModal({ mode, member, onClose, onSubmit, busy }) {
         )}
         <div className="mt-5 flex justify-end gap-2">
           <button type="button" onClick={onClose} className="rounded-lg border border-[#E5E7EB] px-3.5 py-2 text-[12px] font-semibold text-slate-500 hover:bg-slate-50">Cancel</button>
-          <button type="submit" disabled={busy} className="inline-flex items-center gap-2 rounded-lg bg-[#6D28D9] px-3.5 py-2 text-[12px] font-bold text-white hover:bg-[#7C3AED] disabled:opacity-70">{busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ShieldCheck className="h-3.5 w-3.5" />}{isAdd ? "Send invite" : "Update role"}</button>
+          <button type="submit" disabled={busy} className="inline-flex items-center gap-2 rounded-lg bg-[#6D28D9] px-3.5 py-2 text-[12px] font-bold text-white hover:bg-[#7C3AED] disabled:opacity-50">{busy ? "Saving..." : "Save"}</button>
         </div>
       </form>
     </div>

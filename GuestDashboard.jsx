@@ -69,7 +69,7 @@ export default function GuestDashboard() {
         <div className="fade-up rounded-3xl bg-gradient-to-br from-[#6D28D9] to-[#7C3AED] p-6 text-white shadow-sm sm:p-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">Welcome to Plivex</p>
           <h1 className="mt-2 text-[24px] font-bold leading-tight sm:text-[30px]">Run your entire billing business from one dashboard.</h1>
-          <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-white/85">You're browsing a live demo workspace with sample data — no account needed. Create your workspace to get every feature free for 14 days.</p>
+          <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-white/85">You're browsing a live demo workspace with sample data — no account needed. Create your workspace to get every feature unlocked for a full 14 days, free.</p>
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold"><Sparkles className="h-3.5 w-3.5" />14-day full-feature free trial</span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold">No card required</span>
@@ -86,7 +86,7 @@ export default function GuestDashboard() {
 
         <div className="fade-up fade-up-delay-2 grid gap-4 lg:grid-cols-2">
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-4 shadow-sm">
-            <div className="flex items-center justify-between"><h3 className="text-[13px] font-bold text-slate-900">Sales this week (demo)</h3><span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700">+18% ↑</span></div>
+            <div className="flex items-center justify-between"><h3 className="text-[13px] font-bold text-slate-900">Sales this week (demo)</h3><span className="rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-bold text-emerald-700">+12.5%</span></div>
             <div className="mt-3 h-[180px]">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={TREND}>
@@ -111,4 +111,4 @@ export default function GuestDashboard() {
       {authAction !== null && <AuthModal isOpen={true} onClose={() => setAuthAction(null)} actionName={authAction} />}
     </div>
   );
-      }
+}
