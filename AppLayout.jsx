@@ -1,8 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
-import PresenceBeacon from "@/components/PresenceBeacon";
-import { navItems, HIDDEN_FROM_SIDEBAR } from "@/lib/nav";
-import { useRole } from "@/lib/roles";
-import { usePaywall } from "@/lib/paywall";
+import PresenceBeacon from "./PresenceBeacon.jsx";
+import { navItems, HIDDEN_FROM_SIDEBAR } from "./nav.js";
+import { useRole } from "./roles.js";
+import { usePaywall } from "./paywall.js";
 
 export default function AppLayout() {
   const { role } = useRole();
