@@ -40,13 +40,14 @@ export default function Dashboard({ initialTab }) {
   const { isPremium, used, limit, openPaywall, planName, canAccess, trialActive, trialDaysLeft } = usePaywall();
   const { user } = useAuth();
   const { role, isAccountant } = useRole();
+
   useEffect(() => {
     seedDashboard();
-    // Best-effort daily reminder sweep — true server-side cron requires scheduled workflows on a paid plan.
     processDueReminders();
     const sweep = setInterval(processDueReminders, 30 * 60 * 1000);
     return () => clearInterval(sweep);
   }, []);
+
   const go = (t, i = null) => { setTab(t); setIntent(i); window.scrollTo({ top: 0 }); };
   const createInvoice = () => navigate("/invoice-builder");
   const consume = () => setIntent(null);
@@ -95,3 +96,36 @@ export default function Dashboard({ initialTab }) {
           <button onClick={() => setAccountOpen(true)} className="mb-3 flex w-full items-center gap-2.5 rounded-xl border border-[#E5E7EB] px-2.5 py-2 text-left hover:bg-slate-50">
             {user?.profilePicture ? <img src={user.profilePicture} alt="avatar" className="h-8 w-8 rounded-full object-cover" /> : <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#6D28D9] text-[12px] font-bold text-white">{(user?.full_name || user?.email || "U").charAt(0).toUpperCase()}</div>}
             <div className="min-w-0 flex-1"><p className="truncate text-[12px] font-bold text-slate-900">{user?.full_name || "Account"}</p><p className="truncate text-[10px] text-slate-400">{user?.email || "View profile"}</p></div>
+          </button>
+        </div>
+      </aside>
+
+      <main className="md:pl-64">
+        <header className="sticky top-0 z-20 flex items-center justify-between border-b border-[#E5E7EB] bg-white px-4 py-3 md:px-8">
+          <div className="flex items-center gap-3">
+            <h1 className="text-[18px] font-bold">{active?.label || "Dashboard"}</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={createInvoice} className="flex items-center gap-1.5 rounded-xl bg-[#6D28D9] px-4 py-2 text-[13px] font-semibold text-white shadow-sm hover:bg-[#5b21b6]"><Zap className="h-4 w-4" />Create Invoice</button>
+          </div>
+        </header>
+
+        <div className="p-4 md:p-8">
+          {tab === "dashboard" && <DashboardTab go={go} createInvoice={createInvoice} />}
+          {tab === "sales" && <SalesTab intent={intent} consume={consume} />}
+          {tab === "purchase" && <PurchaseTab intent={intent} consume={consume} />}
+          {tab === "reports" && <ReportsTab />}
+          {tab === "crm" && <CrmTab />}
+          {tab === "stock" && <StockTab />}
+          {tab === "team" && <TeamManagement />}
+          {tab === "reconciliation" && <ReconciliationTab />}
+        </div>
+      </main>
+
+      <ChatWidget />
+      <WelcomePopup />
+      <PresenceBeacon />
+      {accountOpen && <AccountProfileModal onClose={() => setAccountOpen(false)} />}
+    </div>
+  );
+}
