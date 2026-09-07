@@ -95,3 +95,4 @@ export default function AboutSection() {
                       <span className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"><Check className="h-2.5 w-2.5" /></span>{f}
                     </li>
                   ))}
+                   </ul>
