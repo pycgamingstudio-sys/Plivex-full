@@ -94,4 +94,11 @@ export default function StockTab() {
                     </tr>
                   );
                 })}
-              </tbody>
+              </tbody>   
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+            }
