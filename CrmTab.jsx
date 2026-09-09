@@ -30,7 +30,7 @@ export default function CrmTab() {
   const persistLeads = (n) => { setLeads(n); saveList(KEYS.leads, n); };
   const saveClient = (entry) => { if (!entry.name.trim()) return; if (!requestAction()) return; const n = clientModal.id ? clients.map((c) => (c.id === clientModal.id ? { ...entry, id: clientModal.id } : c)) : [{ ...entry, id: genId('cli') }, ...clients]; persistClients(n); setClientModal(null); };
   const saveLead = (entry) => { if (!entry.name.trim()) return; if (!requestAction()) return; persistLeads([{ ...entry, id: genId('lead'), stage: 'New Lead', value: Number(entry.value) || 0 }, ...leads]); setLeadModal(null); };
-  const moveLead = (id, stage) => persistLeads(leads.map((l) => (l.id === id ? { ...l, stage } : l)));\n  const invoiceFor = (c) => { localStorage.setItem(KEYS.pendingClient, JSON.stringify({ name: c.name, company: c.company, email: c.email, phone: c.phone, gstin: c.gstin, address: c.address })); navigate('/invoice-builder'); };
+  const moveLead = (id, stage) => persistLeads(leads.map((l) => (l.id === id ? { ...l, stage } : l)));  const invoiceFor = (c) => { localStorage.setItem(KEYS.pendingClient, JSON.stringify({ name: c.name, company: c.company, email: c.email, phone: c.phone, gstin: c.gstin, address: c.address })); navigate('/invoice-builder'); };
   const removeClient = (id) => persistClients(clients.filter((c) => c.id !== id));
   const removeLead = (id) => persistLeads(leads.filter((l) => l.id !== id));
 
