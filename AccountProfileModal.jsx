@@ -95,3 +95,5 @@ export default function AccountProfileModal({ onClose }) {
         </div>
       </div>
     </div>
+  );
+      }
