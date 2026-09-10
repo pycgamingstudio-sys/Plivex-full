@@ -1,0 +1,13 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "VITE_BASE44_APP_ID",
+      "description": "Base44 app ID from your Base44 editor URL (e.g. https://app.base44.com/apps/<app-id>). The generated placeholder lets the UI boot; replace it with the real ID to enable Base44 backend calls (auth, entities, serverless functions).",
+      "requiredAtBoot": true,
+      "generatedForDevelopment": true
+    }
+  ]
+}
