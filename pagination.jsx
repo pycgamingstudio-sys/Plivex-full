@@ -95,3 +95,6 @@ export {
   PaginationLink,
   PaginationItem,
   PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+}

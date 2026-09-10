@@ -96,3 +96,33 @@ export default function OwnerTrackingWidgets() {
                 </div>
               </div>
               <div className="shrink-0 text-right">
+                  <p className="text-[10px] font-bold text-slate-700">{money(s.today_revenue)}</p>
+                  <p className="text-[9px] text-slate-400">{Number(s.today_invoices) || 0} inv · {Number(s.today_quotations) || 0} quo</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-2xl border border-[#E5E7EB] bg-white p-5 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2"><span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#6D28D9]/10 text-[#6D28D9]"><Activity className="h-4 w-4" /></span><h3 className="text-[14px] font-bold text-slate-900">Live Activity Stream</h3></div>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Today</span>
+          </div>
+          <div className="mt-3 space-y-2">
+            {feed.length === 0 && <p className="py-6 text-center text-[12px] text-slate-400">No activity yet today — actions appear as your team invoices or quotes.</p>}
+            {feed.map((a, i) => (
+              <div key={i} className="flex items-start justify-between gap-3 rounded-xl border border-[#E5E7EB] px-3 py-2.5">
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#6D28D9]/10 text-[#6D28D9]"><Users className="h-3.5 w-3.5" /></span>
+                  <div className="min-w-0">
+                    <p className="truncate text-[12px] font-bold text-slate-900">{a.label || a.description || a.text}</p>
+                    <p className="truncate text-[10px] text-slate-400">{a.who} · {ago(Date.now() - new Date(a.at).getTime())}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+}

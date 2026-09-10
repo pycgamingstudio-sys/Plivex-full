@@ -95,3 +95,15 @@ const ResponsiveImage = React.forwardRef(
               fittingType === "fit" ? "object-contain" : "object-cover"
             )}
             onLoad={(e) => {
+              setLoaded(true)
+              onLoad?.(e)
+            }}
+          />
+        )}
+      </ImageWrapper>
+    )
+  }
+)
+ResponsiveImage.displayName = "ResponsiveImage"
+
+export { ResponsiveImage, ImageWrapper }

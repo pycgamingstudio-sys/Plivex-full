@@ -95,3 +95,10 @@ export {
   navigationMenuTriggerStyle,
   NavigationMenu,
   NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuViewport,
+  NavigationMenuIndicator,
+}
